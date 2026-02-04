@@ -33,12 +33,14 @@ program
 
     try {
       audioFile = await recordAudio(options.duration);
+      console.error(`Transcribing audio with ${options.model}...`);
       const transcription = await transcribe(
         audioFile,
         options.model,
         options.language,
       );
 
+      console.error(`Formatting with ${options.ollamaModel}...`);
       let result = transcription;
       if (options.template) {
         result = await formatWithPrompt(
