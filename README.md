@@ -13,9 +13,12 @@ Whisper + Ollama を使った文字起こし CLI
 - Ollama (テキスト整形用)
   ```bash
   brew install ollama
+  ollama pull gemma3:1b
   ```
 - whisper.cpp
   ```bash
+  brew install whisper-cpp
+
   git clone https://github.com/ggerganov/whisper.cpp.git
   cd whisper.cpp && make
   # または whisper / whisper-cli コマンドがPATHに通っていること
@@ -34,6 +37,7 @@ bun run build
 https://huggingface.co/ggerganov/whisper.cpp
 
 モデルファイルを `models/` ディレクトリに配置してください。
+`ggml-large-v3-turbo-q5_0.bin` がおすすめです。
 
 ## 使い方
 
@@ -71,8 +75,8 @@ bun run dev
 | オプション | 説明 | デフォルト |
 |-----------|------|-----------|
 | `-t, --template <path>` | テンプレートファイルのパス（LLMプロンプトとして使用） | - |
-| `-m, --model <path>` | Whisper モデルファイルのパス | `./models/ggml-base.bin` |
-| `--ollama-model <name>` | 使用するOllamaモデル名 | `llama3.2` |
+| `-m, --model <path>` | Whisper モデルファイルのパス | `./models/ggml-large-v3-turbo-q5_0.bin` |
+| `--ollama-model <name>` | 使用するOllamaモデル名 | `gemma3:1b` |
 | `-d, --duration <seconds>` | 録音時間（秒）。指定しない場合は Enter または Ctrl+D で停止 | - |
 | `-l, --language <code>` | 言語コード | `ja` |
 | `--no-refine` | Ollamaによるテキスト整形をスキップ | - |

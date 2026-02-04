@@ -22,9 +22,9 @@ program
   .option(
     "-m, --model <path>",
     "whisper model file path",
-    "./models/ggml-base.bin",
+    "./models/ggml-large-v3-turbo-q5_0.bin",
   )
-  .option("--ollama-model <name>", "ollama model name", "llama3.2")
+  .option("--ollama-model <name>", "ollama model name", "gemma3:1b")
   .option("-d, --duration <seconds>", "recording duration in seconds", parseInt)
   .option("-l, --language <code>", "language code", "ja")
   .option("--no-refine", "skip ollama refinement")
