@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { init } from "./init.js";
 import { formatWithPrompt, refineText } from "./ollama.js";
 import { cleanupAudioFile, recordAudio } from "./recorder.js";
 import { transcribe } from "./whisper.js";
@@ -13,6 +14,21 @@ interface CliOptions {
 }
 
 const program = new Command();
+
+program
+  .command("init")
+  .description("Initialize kikitori (check dependencies, download models)")
+  .action(async () => {
+    try {
+      await init();
+    } catch (error) {
+      console.error(
+        "Error:",
+        error instanceof Error ? error.message : String(error),
+      );
+      process.exit(1);
+    }
+  });
 
 program
   .name("kikitori")
